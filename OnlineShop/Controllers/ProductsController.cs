@@ -16,6 +16,10 @@ namespace OnlineShop.Views
     {
         ProductRepository productsRepository = new ProductRepository();
         Product Product = new Product();
+        Customer customer = new Customer();
+        CustomerOrder customerOrder = new CustomerOrder();
+        CustomerOrderRepository customerOrderRepository = new CustomerOrderRepository();
+        CustomerRepository customRepository = new CustomerRepository();
         // GET: Products
         public ActionResult Index()
         {
@@ -120,15 +124,17 @@ namespace OnlineShop.Views
         [HttpPost]
         public ActionResult GetSelectedItem(int id)
         {
-            Customer customer = new Customer();
-            CustomerOrder customerOrder = new CustomerOrder();
-            CustomerOrderRepository customerOrderRepository = new CustomerOrderRepository();
-            CustomerRepository customRepository = new CustomerRepository();
-            Product = productsRepository.ProductList().Where(x => x.ProductID == id).FirstOrDefault();
-            string nombre = TempData["UserName"] as string;
-            customer = customRepository.CustomerList().Where(x => x.FirstName == nombre).FirstOrDefault();
             DateTime date = DateTime.Now;
             string format = string.Empty;
+
+            string nombre = TempData["UserName"] as string;
+            string Email = TempData["UserEmail"] as string;
+
+            Product = productsRepository.ProductList().Where(x => x.ProductID == id).FirstOrDefault();
+            customer = customRepository.CustomerList().Where(x => x.FirstName == nombre || x.Email == Email).FirstOrDefault();
+            
+
+
             if (Product != null && customer != null)
             {
                 DateTime myDateTime = DateTime.Now;
