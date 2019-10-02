@@ -1,0 +1,41 @@
+﻿@model OnlineShop.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GameTittle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameTittle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameDetail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
